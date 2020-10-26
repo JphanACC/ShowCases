@@ -44,3 +44,6 @@ Week 2: React as frontend with NodeJS/Mongoose as backend API<br>
 
 ## Stretch Goals:
 - The image can be uploaded to the user's model <br>
+- Trending sidebar can be collapse/expand using React <br>
+- Optimize states by allowing user only renders 4 posts maximum in one page when scrolling down <br>
+- User can change color theme <br>
