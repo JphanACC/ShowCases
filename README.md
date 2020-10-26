@@ -12,7 +12,7 @@ User gallery. Current user can view others' gallery but without the authorizatio
 ![](public/assets/Presentation/User_Gallery.jpg)
 
 ## ERD
- ![](public/assets/Presentation/ERD.jpg)
+![](public/assets/Presentation/ERD.jpg)
 
 ## User Story
 The user will enter a social media platform where they can follow and like the other's user posts.<br> 
