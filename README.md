@@ -3,6 +3,7 @@ A media sharing focused social platform
 
 ## Wireframe
 ![](public/assets/Presentation/Home.jpg)
+![](public/assets/Presentation/User_Gallery.jpg)
 
 ## User Story
 The user will enter a social media platform where they can follow and like the other's user posts.<br> 
@@ -16,6 +17,7 @@ The user can: <br>
     2. follow other artists (have their own follow sidebar). <br>
     3. read other artists' posts and their gallery. <br>
     4. go to their own gallery (which are their posts) and edit/delete them. 
+    5. see the number and see the followers and following other users. <br>
 
 The app can:
     1. allow user to close trending panel, which shows most liked posts in descending order. 
