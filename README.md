@@ -2,8 +2,17 @@
 A media sharing focused social platform
 
 ## Wireframe
+Home page after signing in. Register/Login process is required before entering.
 ![](public/assets/Presentation/Home.jpg)
+
+When adding new post, user can put in URL of their 3rd party uploaded photos. Only 1 url is permitted for 1 post. (subject to change)
+![](public/assets/Presentation/Home_ModalURL.jpg)
+
+User gallery. Current user can view others' gallery but without the authorization to edit
 ![](public/assets/Presentation/User_Gallery.jpg)
+
+## ERD
+ ![](public/assets/Presentation/ERD.jpg)
 
 ## User Story
 The user will enter a social media platform where they can follow and like the other's user posts.<br> 
@@ -23,12 +32,12 @@ The app can:
     1. allow user to close trending panel, which shows most liked posts in descending order. 
 
 ## Milestone:
-Week 1: <br>
+Week 1: NodeJS/Express/Mongoose based application <br>
 - Monday-Tuesday: Building basic framework and models. <br>
 - Tuesday-Wednesday: Full CRUD for user's posts and authorization route <br>
 - Thursday-Friday: Implement core features that user can follow and like posts <br>
 - Weekend: Finishing front-end feature designs and styles. <br>
-Week 2: 
+Week 2: React as frontend with NodeJS/Mongoose as backend API<br>
 - Monday: Implement React refactor by refactoring Node into API <br>
 - Tuesday-Wednesday: Finish React refactoring and optimizing codes <br>
 
