@@ -37,6 +37,7 @@ Week 1: NodeJS/Express/Mongoose based application <br>
 - Tuesday-Wednesday: Full CRUD for user's posts and authorization route <br>
 - Thursday-Friday: Implement core features that user can follow and like posts <br>
 - Weekend: Finishing front-end feature designs and styles. <br>
+
 Week 2: React as frontend with NodeJS/Mongoose as backend API<br>
 - Monday: Implement React refactor by refactoring Node into API <br>
 - Tuesday-Wednesday: Finish React refactoring and optimizing codes <br>
