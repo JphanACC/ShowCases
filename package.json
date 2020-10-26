@@ -1,0 +1,27 @@
+{
+  "name": "showcases",
+  "version": "1.0.0",
+  "description": "Media showcase social platform",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.10.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JphanACC/ShowCases.git"
+  },
+  "author": "Jack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JphanACC/ShowCases/issues"
+  },
+  "homepage": "https://github.com/JphanACC/ShowCases#readme"
+}
