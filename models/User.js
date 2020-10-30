@@ -8,9 +8,12 @@ const userSchema = new Schema({
         unique: true,
         maxlength: 100,
     },
-    full_name: {
+    firstName: {
         type: String,
-        required: null,
+
+    },
+    lastName: {
+        type: String,
     },
     email: {
         type: String,
@@ -19,6 +22,19 @@ const userSchema = new Schema({
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     },
     password: { type: String, required: true },
+    profileUrl: {
+        type: String,
+    },
+    Followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        minimize: false
+    }],
+    Followings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        minimize: false
+    }],
 }, { timestamps: true });
 
 userSchema.set("toJSON", {

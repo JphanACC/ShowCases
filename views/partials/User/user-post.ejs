@@ -1,0 +1,19 @@
+<div class="row">
+    <h3>Post</h3>
+</div>
+<form action="/showcases/" method="POST">
+    <div class="row">
+
+        <textarea type="text" class="form-control" name="description" maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required></textarea>
+
+    </div>
+    <div class="row">
+        <span>Only one URL per post</span>
+    </div>
+    <div class="row">
+        <input type="text" name="content_video" placeholder="Video URL">
+        <input type="text" name="content_image" placeholder="Image URL">
+        <input type="text" name="content_3D" placeholder="3D URL">
+        <button type="submit">Show!</button>
+    </div>
+</form>

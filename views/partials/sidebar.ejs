@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Welcome,
+                <%= currentUser.firstName %>
+            </h3>
+            <p>Followers:
+                <%= currentUser.Followers.length %>
+            </p>
+            <p>Followings:
+                <% console.log(currentUser) %>
+                    <%= currentUser.Followings.length %>
+            </p>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>
+                <%= currentUser.email %>
+            </p>
+
+            <li>
+                <a href="/Showcases/">Home</a>
+            </li>
+            <li>
+                <a href="/Showcases/<%= currentUser._id %>/profile">My Profile</a>
+            </li>
+            <li>
+                <a href="/Showcases/<%= currentUser._id %>/mygallery">My Gallery</a>
+            </li>
+
+        </ul>
+    </nav>
+
+</div>

@@ -2,23 +2,30 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    username: {
+    description: {
         type: String,
-        required: true,
-        unique: true,
-        maxlength: 100,
+        required: [true, "Please provide what you want to say in the post!"],
+        maxlength: 500,
     },
-    full_name: {
+    created_at: Date,
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }],
+    content_video: {
         type: String,
-        required: null,
+
     },
-    email: {
+    content_image: {
         type: String,
-        required: true,
-        unique: true,
-        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     },
-    password: { type: String, required: true },
+    content_3D: {
+        type: String,
+    },
+    User: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }
 }, {
     timestamps: true,
 });;

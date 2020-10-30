@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include ('../partials/head') %>
 
-<body>
-    <h1>Login page</h1>
-</body>
+    <body>
+        <div class="container">
+
+            <!-- Register  -->
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#signupModal">Register</button>
+                </div>
+            </div>
+
+            <!-- Login -->
+            <div class="row">
+                <div class="col">
+                    <form action="/auth/login" method="POST">
+                        <div>
+                            <p>
+                                <label for="email">Email</label>
+                                <input type="text" name="email" class="form-control" maxlength="100" minlength="2" required>
+                            </p>
+                            <p>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" maxlength="100" minlength="4" required>
+                            </p>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary">Login</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Modal logic-->
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="SignupModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sign up</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="/auth/register" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        <label for="first_name">First Name: </label>
+                                        <input type="text" class="form-control" name="firstName" maxlength="25" minlength="2" placeholder="Enter Your First Name" required>
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        <label for="last_name">Last Name: </label>
+                                        <input type="text" class="form-control" name="lastName" maxlength="25" minlength="2" placeholder="Enter Your Last Name" required>
+                                    </p>
+                                </div>
+                            </div>
+                            <p>
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" maxlength="25" minlength="2" placeholder="name@email.com" required>
+                            </p>
+                            <p>
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" name="username" maxlength="25" minlength="2" placeholder="Enter Your User Name" required>
+                            </p>
+                            <p>
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" name="password" maxlength="25" minlength="4" placeholder="Enter Your Password. Max 25 characters. Minimum of 4 characters is required." required>
+                            </p>
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+
+                                <button type="submit" class="btn btn-primary">Sign up</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 
 </html>
