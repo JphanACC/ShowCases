@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="followings-sidebar">
+        <div class="sidebar-header">
+            <h3>Followings:
+            </h3>
+
+        </div>
+
+        <ul class="list-unstyled components">
+            <% currentUser.Followings.forEach((following) => { %>
+                <li>
+                    <a href="/Showcases/<%= following.id%>">
+                        <%= following.username %>
+                    </a>
+                </li>
+                <% }) %>
+
+
+        </ul>
+    </nav>
+
+</div>

@@ -9,8 +9,7 @@
                 <%= currentUser.Followers.length %>
             </p>
             <p>Followings:
-                <% console.log(currentUser) %>
-                    <%= currentUser.Followings.length %>
+                <%= currentUser.Followings.length %>
             </p>
         </div>
 
@@ -23,10 +22,10 @@
                 <a href="/Showcases/">Home</a>
             </li>
             <li>
-                <a href="/Showcases/<%= currentUser._id %>/profile">My Profile</a>
+                <a href="/user/<%= currentUser._id %>/profile">My Profile</a>
             </li>
             <li>
-                <a href="/Showcases/<%= currentUser._id %>/mygallery">My Gallery</a>
+                <a href="/user/<%= currentUser._id %>/mygallery">My Gallery</a>
             </li>
 
         </ul>

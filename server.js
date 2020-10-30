@@ -61,7 +61,7 @@ app.use("/showcases", authRequired, routes.app);
 //Auth route
 app.use("/auth", routes.auth);
 //User route
-app.use("/user", routes.user);
+app.use("/user", authRequired, routes.user);
 
 
 

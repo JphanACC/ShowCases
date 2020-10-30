@@ -4,12 +4,16 @@ const db = require('../models');
 const index = async(req, res) => {
     try {
         const foundPost = await db.Post.find({}).populate("User")
-        const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
+        const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
+        const foundcurrentFollowing = await db.User.findById(req.session.currentUser.id).populate("Followings");
 
+        console.log("Current User")
+        console.log(foundCurrentUser)
         res.render('index', {
             title: "Home Page",
             eachPost: foundPost,
             currentUser: foundCurrentUser,
+            foundcurrentFollowing: foundcurrentFollowing,
         })
     } catch (error) {
         console.log(error)
@@ -20,7 +24,7 @@ const index = async(req, res) => {
 //Create new post
 const addPost = async(req, res) => {
     try {
-        console.log(req.body)
+
         const newPost = await db.Post.create(req.body);
         const foundUser = await db.User.findById(req.session.currentUser.id);
 
@@ -57,7 +61,6 @@ const likePost = async(req, res) => {
     try {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
-        const foundUserPost = await db.User.findById(foundPost.User._id)
 
         if (foundPost.likes.length === 0) {
             foundPost.likes.push(req.session.currentUser.id)
@@ -86,18 +89,18 @@ const followUser = async(req, res) => {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
 
-        console.log(foundPost.User._id !== foundCurrentUser._id)
+        console.log(foundPost.User.Followers)
 
         //Pseudo-Code
 
         //if post user's followers are empty
         //if current user's following is empty
         if (foundCurrentUser.id !== foundPost.User.id) {
-            if (foundCurrentUser.Followings.length === 0 && foundPost.User.Followers.length === 0) {
+            if (foundCurrentUser.Followings.length === 0 || foundPost.User.Followers.length === 0) {
                 foundCurrentUser.Followings.push(foundPost.User._id)
-                foundPost.User.Followers.push(foundCurrentUser._id)
+                foundPost.User.Followers.push(foundCurrentUser.id)
                 await foundCurrentUser.save()
-                await foundPost.save();
+                await foundPost.User.save();
 
             } else {
                 //Current user
@@ -107,9 +110,9 @@ const followUser = async(req, res) => {
 
                 if (!isInFollowing && !isInFollower) {
                     foundCurrentUser.Followings.push(foundPost.User._id)
-                    foundPost.User.Followers.push(foundCurrentUser._id)
+                    foundPost.User.Followers.push(foundCurrentUser.id)
                     await foundCurrentUser.save()
-                    await foundPost.save()
+                    await foundPost.User.save()
                 }
             }
         } else {
@@ -118,8 +121,8 @@ const followUser = async(req, res) => {
         }
 
         //Check
-        console.log("Current User Model status:")
-        console.log(foundCurrentUser)
+        // console.log("Current User Model status:")
+        // console.log(foundCurrentUser)
 
         console.log("Found Post User Model status:")
         console.log(foundPost.User)
