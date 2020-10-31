@@ -2,8 +2,9 @@ const db = require("../models");
 
 const show = async(req, res) => {
     try {
-        const foundPost = await db.Post.find({}).populate("User")
-        const foundCurrentUser = await db.User.findById(req.params.id).populate("Followings");
+        const foundPost = await db.Post.find({}).populate("User");
+        const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
+        const foundUser = await db.User.findById(req.params.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
 
         console.log("Current User")
@@ -12,6 +13,7 @@ const show = async(req, res) => {
             title: "My Profile",
             eachPost: foundPost,
             currentUser: foundCurrentUser,
+            foundUser: foundUser,
             foundcurrentFollowing: foundcurrentFollowing,
         })
     } catch (error) {

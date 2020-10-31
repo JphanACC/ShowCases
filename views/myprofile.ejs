@@ -15,9 +15,29 @@
                     <%- include ('partials/sidebar') %>
                 </div>
                 <div class="col-md-8">
+                    <div class="row">
+                        <p>
+                            User:
+                            <%= foundUser.username %>
+                                <br> First Name:
+                                <%= foundUser.firstName %>
 
-                    Edit your profile
+                                    <br> Last Name:
+                                    <%= foundUser.lastName %>
 
+                                        <br> Email Address:
+                                        <%= foundUser.email %>
+
+                                            <br> Joined Date:
+                                            <%= foundUser.createdAt %>
+                        </p>
+                    </div>
+                    <% console.log(currentUser.id == foundUser.id) %>
+                        <% if (currentUser.id == foundUser.id) { %>
+                            <hr/>
+                            <%- include ('partials/User/edit-profile.ejs') %>
+                                <% } %>
+                                    <hr/>
                 </div>
                 <!-- User posts-->
 
@@ -26,4 +46,14 @@
         </div>
     </body>
 
-</html>
+</html>>
+<!-- User posts-->
+
+</div>
+</div>
+</div>
+</body>
+
+</html>>
+
+</html>>
