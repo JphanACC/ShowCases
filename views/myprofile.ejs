@@ -32,28 +32,21 @@
                                             <%= foundUser.createdAt %>
                         </p>
                     </div>
-                    <% console.log(currentUser.id == foundUser.id) %>
-                        <% if (currentUser.id == foundUser.id) { %>
-                            <hr/>
-                            <%- include ('partials/User/edit-profile.ejs') %>
-                                <% } %>
-                                    <hr/>
+
+                    <% if (currentUser.id == foundUser.id) { %>
+                        <%- include ('partials/User/edit-profile.ejs') %>
+                            <% } %>
+                                <hr/>
+                                <% eachPost.forEach((post) => { %>
+                                    <div class="row">
+
+                                        <%- include ('partials/User/user-show-posts', {post: post}) %>
+                                    </div>
+                                    <% }) %>
                 </div>
                 <!-- User posts-->
-
             </div>
-        </div>
         </div>
     </body>
 
-</html>>
-<!-- User posts-->
-
-</div>
-</div>
-</div>
-</body>
-
-</html>>
-
-</html>>
+</html>

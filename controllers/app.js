@@ -7,8 +7,7 @@ const index = async(req, res) => {
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.session.currentUser.id).populate("Followings");
 
-        console.log("Current User")
-        console.log(foundCurrentUser)
+
         res.render('index', {
             title: "Home Page",
             eachPost: foundPost,
@@ -89,7 +88,7 @@ const followUser = async(req, res) => {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
 
-        console.log(foundPost.User.Followers)
+
 
         //Pseudo-Code
 
