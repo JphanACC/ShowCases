@@ -5,7 +5,9 @@ const show = async(req, res) => {
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
         const foundUser = await db.User.findById(req.params.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
-        const foundUserPosts = await db.Post.find({ User: foundUser.id }).populate("User")
+        const foundUserPosts = await db.Post.find({
+            User: foundUser.id
+        }).populate("User")
 
 
         res.render('myprofile', {
@@ -27,7 +29,9 @@ const editProfile = async(req, res) => {
         const foundUser = await db.User.findById(req.params.id)
 
         if (foundCurrentUser.id === foundUser.id) {
-            const updatedUser = await db.User.findByIdAndUpdate(foundUser.id, req.body, { new: true })
+            const updatedUser = await db.User.findByIdAndUpdate(foundUser.id, req.body, {
+                new: true
+            })
         }
 
         res.redirect(`/user/${foundUser.id}/profile`)
@@ -44,7 +48,24 @@ const editPost = async(req, res) => {
         const foundUserId = foundPost.User.id
 
         if (foundCurrentUser.id === foundUserId) {
-            const updatedPost = await db.Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+            const updatedPost = await db.Post.findByIdAndUpdate(req.params.id, req.body, {
+                new: true
+            })
+
+            // Youtube Video trimmed tag
+            if (updatedPost.content_video && updatedPost.content_video.length !== 11) {
+                const trimmedURL = updatedPost.content_video.slice(-11)
+                updatedPost.content_video = trimmedURL
+            }
+
+            // sketchfab trimmed tag
+            if (updatedPost.content_3D && updatedPost.content_3D.length !== 11) {
+                const trimmedURL = updatedPost.content_3D.slice(-32)
+                updatedPost.content_3D = trimmedURL
+            }
+
+            await updatedPost.save()
+
         }
 
         res.redirect(`/user/${foundUserId}/profile`)

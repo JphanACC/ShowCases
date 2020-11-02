@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
             <% currentUser.Followings.forEach((following) => { %>
                 <li>
-                    <a href="/Showcases/<%= following.id%>">
+                    <a href="/user/<%= following.id%>/profile">
                         <%= following.username %>
                     </a>
                 </li>

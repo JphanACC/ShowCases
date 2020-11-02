@@ -1,0 +1,52 @@
+<nav class="fixed-bottom">
+    <div class="container">
+        <div class="row">
+
+            <button>Trending now!</button>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="trending-carousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#trending-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#trending-carousel" data-slide-to="1"></li>
+                    <li data-target="#trending-carousel" data-slide-to="2"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner no-padding">
+                    <div class="carousel-item active">
+                        <% for( let index = 0; index < 5; index++ ) { %>
+
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                <img src="<%= eachPost[index].User.content_image %>">
+                            </div>
+
+                            <% } %>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-xs-12 col-sm-3 col-md-3">
+                            <img src="https://image.shutterstock.com/z/stock-photo-sleeping-disorders-as-a-reason-for-insomnia-293777093.jpg">
+                        </div>
+
+                    </div>
+                    <div class="carousel-item">
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+</nav>
