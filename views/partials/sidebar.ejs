@@ -2,33 +2,45 @@
     <!-- Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Welcome,
-                <%= currentUser.firstName %>
-            </h3>
-            <p>Followers:
-                <%= currentUser.Followers.length %>
-            </p>
-            <p>Followings:
-                <%= currentUser.Followings.length %>
-            </p>
-        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="profile-photo img-scale" style="background-image: url('<%= currentUser.profileUrl %>')"></div>
+                </div>
+                <div class="col">
+                    <h3>Welcome,
+                        <%= currentUser.firstName %>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>Followers:
+                        <%= currentUser.Followers.length %>
+                    </p>
+                </div>
+                <div class="col">
+                    <p>Followings:
+                        <%= currentUser.Followings.length %>
+                    </p>
+                </div>
+            </div>
 
-        <ul class="list-unstyled components">
-            <p>
-                <%= currentUser.email %>
-            </p>
+            <ul class="list-unstyled components">
+                <p>
+                    <%= currentUser.email %>
+                </p>
 
-            <li>
-                <a href="/Showcases/">Home</a>
-            </li>
-            <li>
-                <a href="/user/<%= currentUser._id %>/profile">My Profile</a>
-            </li>
-            <li>
-                <a href="/user/<%= currentUser._id %>/mygallery">My Gallery</a>
-            </li>
+                <li>
+                    <a href="/Showcases/">Home</a>
+                </li>
+                <li>
+                    <a href="/user/<%= currentUser._id %>/profile">My Profile</a>
+                </li>
+                <li>
+                    <a href="/user/<%= currentUser._id %>/mygallery">My Gallery</a>
+                </li>
 
-        </ul>
+            </ul>
     </nav>
 
-</div>
+    </div>

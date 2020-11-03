@@ -3,13 +3,32 @@ const db = require('../models');
 //Show Home Page
 const index = async(req, res) => {
     try {
-        const foundPost = await db.Post.find({}).populate("User")
+        const foundPost = await db.Post.find({}).populate("User").sort({ "createdAt": -1 })
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.session.currentUser.id).populate("Followings");
 
+        const sortedLikes = await db.Post.aggregate([
+            // project with an array length
+            {
+                "$project": {
+                    "description": 1,
+                    "created_at": 1,
+                    "likes": 1,
+                    "content_video": 1,
+                    "content_image": 1,
+                    "content_3D": 1,
+                    "User": 1,
+                    "length": { "$size": "$likes" }
+                }
+            },
+            // sort on the "length"
+            { "$sort": { "length": -1 } },
+        ])
+        const trendingPost = await db.User.populate(sortedLikes, { "path": "User" })
 
         res.render('index', {
             title: "Home Page",
+            trendingPosts: trendingPost,
             eachPost: foundPost,
             currentUser: foundCurrentUser,
             foundcurrentFollowing: foundcurrentFollowing,

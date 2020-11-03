@@ -6,16 +6,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Your Profile</h4>
+                <h4 class="modal-title" style="color:black;">Edit Your Profile</h4>
             </div>
             <form action="/user/<%=currentUser._id%>?_method=PUT" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
 
+
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" name="name" class="form-control" placeholder="New Email Address" value="<%= currentUser.email%>">
+                                <input type="email" name="email" class="form-control" placeholder="New Email Address" value="<%= currentUser.email%>">
                             </div>
 
 
@@ -37,7 +38,14 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="profileUrl">Profile Photo:</label>
+                                        <input type="profileUrl" name="profileUrl" class="form-control" placeholder="New profile photo" value="<%= currentUser.profileUrl%>">
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

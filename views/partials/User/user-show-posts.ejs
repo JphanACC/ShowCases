@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-1">
-        <img class="mr-3" src="https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg" alt="Generic placeholder image" style="width:50px">
+        <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
     </div>
     <div class="col-10">
         <h5 class="mt-0">
@@ -12,7 +12,7 @@
             <%= post.description%>
         </p>
         <% if (post.content_image) { %>
-            <embed type="image/jpg" src="<%= post.content_image %>" width="420" height="315">
+            <div class="post-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
             <% } %>
 
                 <% if (post.content_video) { %>
