@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditPost">
+<button type="button" class="bttn-simple bttn-sm bttn-default bttn-no-outline" data-toggle="modal" data-target="#EditPost">
     Edit
 </button>
 
 <div class="modal fade" id="EditPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content card-trans gradient-border">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Your Post</h4>
             </div>
@@ -14,22 +14,22 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="content-description">Post Description</label>
-                                <textarea type="text" class="form-control" name="description" maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required><%=post.description%></textarea>
+                                <textarea type="text" class="form-control card-trans" name="description" maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required><%=post.description%></textarea>
                             </div>
 
-                            <input type="text" name="content_video" placeholder="Video URL" value="<%= post.content_video%>">
-                            <input type="text" name="content_image" placeholder="Image URL" value="<%= post.content_image%>">
-                            <input type="text" name="content_3D" placeholder="3D URL" value="<%= post.content_3D%>">
+                            <input type="text" name="content_video" placeholder="Video URL" class="form-control card-trans" value="<%= post.content_video%>">
+                            <input type="text" name="content_image" placeholder="Image URL" class="form-control card-trans" value="<%= post.content_image%>">
+                            <input type="text" name="content_3D" placeholder="3D URL" class="form-control card-trans" value="<%= post.content_3D%>">
 
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Change</button>
+                    <button type="submit" class="bttn-fill bttn-sm bttn-primary bttn-no-outline">Change</button>
             </form>
             <form action="/user/deletepost/<%=post._id%>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="bttn-fill bttn-sm bttn-danger bttn-no-outline">Delete</button>
             </form>
             </div>
         </div>

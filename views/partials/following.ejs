@@ -9,11 +9,22 @@
 
         <ul class="list-unstyled components">
             <% currentUser.Followings.forEach((following) => { %>
-                <li>
-                    <a href="/user/<%= following.id%>/profile">
-                        <%= following.username %>
-                    </a>
-                </li>
+                <a href="/user/<%= following.id%>/profile">
+                    <div class="row gradient-border" style="margin: 2px;">
+                        <div class="col-3" style="top:15px">
+                            <div class="profile-photo img-scale" style="background-image: url('<%= following.profileUrl %>'); width: 45px; height: 45px;"></div>
+                        </div>
+                        <div class="col-9" style="font-size: 23px;">
+                            <p>
+                                <%= following.firstName %>
+                            </p>
+                            <p class="text-wraps" style="font-size: 12px;">
+                                <%= following.email %>
+                            </p>
+                        </div>
+                        <div class="the-blur"></div>
+                    </div>
+                </a>
                 <% }) %>
 
 

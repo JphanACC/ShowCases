@@ -19,7 +19,9 @@
                         <p>By:
                             <%=trendingPosts[index].User.username %>
                         </p>
-                        <div class="md-thumbnail img-scale" style="background-image: url('http://i3.ytimg.com/vi/<%=trendingPosts[index].content_video %>/hqdefault.jpg')"></div>
+                        <div class="md-thumbnail img-scale">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/<%= trendingPosts[index].content_video %>"></iframe>
+                        </div>
                         <span><%=trendingPosts[index].likes.length %> <i class="fa fa-thumbs-o-up"></i></span>
                     </div>
                 </div>

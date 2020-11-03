@@ -1,4 +1,43 @@
-/* SECTION Carousel */
+/* SECTION Import */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@font-face {
+    font-family: Acquire;
+    src: url("/assets/fonts/Aquire-BW0ox.otf");
+}
+
+
+/* Base */
+
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, #020024 0%, #0a3d4d 53%, #051542 100%);
+    color: #f4fffef1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Logo*/
+
+.font-logo {
+    font-family: Acquire;
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #3fe095, #29acf8);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: 24px;
+}
 
 
 /* Aldo figs */
@@ -57,16 +96,31 @@ body .carousel-control-next-icon {
 
 /* Features */
 
+.text-wraps {
+    word-break: break-all;
+}
+
+.sm-spacing {
+    margin: 0px 5px 0px 5px;
+    padding: 5px;
+}
+
 
 /* trending images thumbnail sizes */
 
 .md-thumbnail {
     width: 200px;
     height: 150px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
 }
 
 
 /* Main */
+
+
+/* Photo */
 
 .img-scale {
     background-position: 50% 50%;
@@ -76,16 +130,76 @@ body .carousel-control-next-icon {
 }
 
 .profile-photo {
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    -moz-box-shadow: 2px 2px 12px #000;
+    -webkit-box-shadow: 2px 2px 12px #000;
+    box-shadow: 2px 2px 12px #000;
 }
 
 .post-thumbnail {
-    width: 500px;
-    height: 250px;
+    width: 400px;
+    height: 255px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
 }
 
-body {
-    background-color: #05041A;
-    color: white;
+
+/* Card */
+
+.card-white-bg {
+    padding: 3px;
+    margin: 3px;
+    background-color: #d5ffff63;
+    border-radius: 5px;
+}
+
+.card-trans {
+    padding: 8px;
+    background: #0d0118ea;
+}
+
+.the-blur {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, .4);
+    z-index: 1010;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+}
+
+
+/* Border */
+
+.gradient-border {
+    border: 1px solid;
+    border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+}
+
+.bottom-border {
+    border: 1px;
+    border-style: none none solid none;
+    border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+}
+
+
+/* iframe */
+
+iframe {
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-style: double;
+    border-radius: 12px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0);
 }

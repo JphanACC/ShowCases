@@ -1,46 +1,51 @@
-<div class="row">
-    <div class="col-1">
+<div class="row card-trans-white-border gradient-border" style="margin: 1vh -3vh 1vh -3vh; padding: 15px">
+    <div class="col-2">
         <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
     </div>
-    <div class="col-10">
+    <div class="col-9">
         <h5 class="mt-0">
-            <a href="<%= post.User._id%>">
-                <%= post.User.username%>
+            <a href="/user/<%= post.User._id%>/profile">
+                <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline"><%= post.User.username%></button>
             </a>
         </h5>
         <p>
             <%= post.description%>
         </p>
-        <% if (post.content_image) { %>
-            <div class="post-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
-            <% } %>
+        <!-- Media -->
+        <div style="padding: 10px;">
+            <% if (post.content_image) { %>
+                <div class="post-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
+                <% } %>
 
-                <% if (post.content_video) { %>
-                    <iframe width="420" height="315" src="https://www.youtube.com/embed/<%= post.content_video %>"></iframe>
-                    <% } %>
+                    <% if (post.content_video) { %>
+                        <iframe width="400" height="255" src="https://www.youtube.com/embed/<%= post.content_video %>"></iframe>
+                        <% } %>
 
-                        <% if (post.content_3D) { %>
-                            <iframe width="420" height="315" src="https://sketchfab.com/models/<%= post.content_3D %>/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr"
-                                mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                            <% } %>
+                            <% if (post.content_3D) { %>
+                                <iframe width="400" height="255" src="https://sketchfab.com/models/<%= post.content_3D %>/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr"
+                                    mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                <% } %>
+        </div>
+        <!-- Like/Edit/Follow -->
+        <div class="row sm-spacing float-right">
+            <form action="/showcases/<%= post._id%>/like" method="POST">
+                <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
+                    <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>
+                </button>
+            </form>
 
-                                <div class="row">
-                                    <form action="/showcases/<%= post._id%>/like" method="POST">
-                                        <button type="submit">Like</button>
-                                    </form>
+            <div>
+                <% if (currentUser.id == post.User.id) { %>
+                    <%- include ('./edit-post') %>
+                        <% } %>
+                            <% if (currentUser.id !== post.User.id) { %>
+                                <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                    <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Follow</button>
+                                </form>
+                                <% } %>
+            </div>
 
-                                    <span id="likes-count-<%= post.id %>"><%= post.likes.length %></span>
-
-                                    <% if (currentUser.id == post.User.id) { %>
-                                        <%- include ('./edit-post') %>
-                                            <% } %>
-                                                <% if (currentUser.id !== post.User.id) { %>
-                                                    <form action="/showcases/<%= post._id%>/follow" method="POST">
-                                                        <button type="submit">Follow</button>
-                                                    </form>
-                                                    <% } %>
-
-                                </div>
+        </div>
 
     </div>
 </div>
