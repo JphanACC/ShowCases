@@ -1,52 +1,52 @@
-<nav class="fixed-bottom">
-    <div class="container">
-        <div class="row">
-            <button>Trending now!</button>
+<% let startOfArray = true; %>
+    <nav class="fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <button>Trending now!</button>
+            </div>
         </div>
-    </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div id="trending-carousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                    <li data-target="#trending-carousel" data-slide-to="0" class="active"></li>
-                    <% if (trendingPosts.length >= 6 && trendingPosts.length <= 12) { %>
-                        <li data-target="#trending-carousel" data-slide-to="1"></li>
-                        <% } else if (trendingPosts.length > 12) { %>
-                            <li data-target="#trending-carousel" data-slide-to="2"></li>
-                            <% } %>
-                </ul>
-
-                <!-- The slideshow -->
-                <div class="carousel-inner no-padding">
-                    <div class="carousel-item active">
-                        <% for( let index = 0; index < 6; index++ ) { %>
-                            <%- include ('./carousel-items/carousel-item', {index: index}) %>
-                                <% } %>
-                    </div>
-                    <% if (trendingPosts.length >= 6 && trendingPosts.length <= 12) { %>
-                        <div class="carousel-item">
-                            <% for( let index = 6; index < 12; index++ ) { %>
-                                <%- include ('./carousel-items/carousel-item', {index: index}) %>
+        <div class="container-fluid bg-dark">
+            <div class="row">
+                <div class="col">
+                    <div id="trending-carousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <% for (let i = 0; i < carouselSlides.length; i++) { %>
+                                <li data-target="#trending-carousel" data-slide-to="<%= i %>" class="<%= startOfArray ? " active " : " " %>"></li>
+                                <% startOfArray = false %>
                                     <% } %>
-                        </div>
-                        <% } else if (trendingPosts.length > 12) { %>
-                            <div class="carousel-item">
-                                <% for( let index = 12; index < 18; index++ ) { %>
-                                    <%- include ('./carousel-items/carousel-item', {index: index}) %>
-                                        <% } %>
+                                        <% startOfArray = true %>
+                        </ul>
+
+                        <% console.log(carouselSlides) %>
+
+                            <!-- The slideshow -->
+                            <div class="carousel-inner no-padding">
+                                <% let index = 0 %>
+                                    <% for (const slide of carouselSlides) { %>
+                                        <div class="carousel-item<%= startOfArray ? " active " : " " %>">
+                                            <% for (const post of slide) { %>
+                                                <div class="row align-items-center c-item1 c-item-row">
+                                                    <%- include ('./carousel-items/carousel-item', {index: index}) %>
+                                                        <% index++ %>
+                                                </div>
+                                                <% } %>
+                                        </div>
                             </div>
-                            <% } %>
-                                <!-- Left and right controls -->
-                                <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </a>
-                                <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
-                                </a>
+                            <% startOfArray = false %>
+                                <% } %>
+                                    <% startOfArray = true %>
+                                        <!-- Left and right controls -->
+                                        <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</nav>
+        </div>
+    </nav>

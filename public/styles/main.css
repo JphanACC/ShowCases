@@ -1,17 +1,51 @@
 /* SECTION Carousel */
 
 
+/* Aldo figs */
+
+.carousel-inner {
+    height: 250px;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.c-item1 {
+    padding: 1px;
+    background-color: green;
+    height: 100%;
+}
+
+.c-item2 {
+    padding: 1px;
+    background-color: rgb(128, 0, 0);
+    height: 100%;
+}
+
+.c-item3 {
+    padding: 1px;
+    background-color: rgb(128, 0, 128);
+    height: 100%;
+}
+
+.c-item-row {
+    padding: 25px;
+}
+
+
 /* Default Carousel Settings*/
 
-.col-md-3 {
-    display: inline-block;
+
+/* .col-md-3 {
+    display: block;
     margin-left: -4px;
 }
 
 .col-md-3 img {
     width: 100%;
     height: auto;
-}
+} */
 
 body .carousel-indicators li {
     background-color: rgb(0, 81, 255);
@@ -26,10 +60,11 @@ body .carousel-control-next-icon {
     background-color: rgb(0, 195, 255);
 }
 
-body .no-padding {
+
+/* body .no-padding {
     padding-left: 0;
     padding-right: 0;
-}
+} */
 
 
 /* Features */

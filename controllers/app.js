@@ -24,10 +24,14 @@ const index = async(req, res) => {
             // sort on the "length"
             { "$sort": { "length": -1 } },
         ])
-        const trendingPost = await db.User.populate(sortedLikes, { "path": "User" })
+        let trendingPost = await db.User.populate(sortedLikes, { "path": "User" })
+        trendingPost = trendingPost.filter(post => post.content_image || post.content_video || post.content_3D)
+
+        const carouselSlides = Array.from({ length: Math.ceil(trendingPost.length / 6) }, (v, i) => trendingPost.slice(i * 6, i * 6 + 6));
 
         res.render('index', {
             title: "Home Page",
+            carouselSlides: carouselSlides,
             trendingPosts: trendingPost,
             eachPost: foundPost,
             currentUser: foundCurrentUser,
