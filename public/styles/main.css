@@ -11,21 +11,9 @@
     height: 100%;
 }
 
-.c-item1 {
+.c-item {
     padding: 1px;
-    background-color: green;
-    height: 100%;
-}
-
-.c-item2 {
-    padding: 1px;
-    background-color: rgb(128, 0, 0);
-    height: 100%;
-}
-
-.c-item3 {
-    padding: 1px;
-    background-color: rgb(128, 0, 128);
+    background-color: rgba(0, 13, 128, 0.151);
     height: 100%;
 }
 

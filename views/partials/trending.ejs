@@ -26,27 +26,27 @@
                                 <% let index = 0 %>
                                     <% for (const slide of carouselSlides) { %>
                                         <div class="carousel-item<%= startOfArray ? " active " : " " %>">
-                                            <% for (const post of slide) { %>
-                                                <div class="row align-items-center c-item1 c-item-row">
+                                            <div class="row align-items-center">
+                                                <% for (const post of slide) { %>
                                                     <%- include ('./carousel-items/carousel-item', {index: index}) %>
                                                         <% index++ %>
-                                                </div>
-                                                <% } %>
+                                                            <% } %>
+                                            </div>
                                         </div>
+                                        <% startOfArray = false %>
+                                            <% } %>
+                                                <% startOfArray = true %>
+                                                    <!-- Left and right controls -->
+                                                    <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
+                                                        <span class="carousel-control-prev-icon"></span>
+                                                    </a>
+                                                    <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
+                                                        <span class="carousel-control-next-icon"></span>
+                                                    </a>
                             </div>
-                            <% startOfArray = false %>
-                                <% } %>
-                                    <% startOfArray = true %>
-                                        <!-- Left and right controls -->
-                                        <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
-                                            <span class="carousel-control-prev-icon"></span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
-                                            <span class="carousel-control-next-icon"></span>
-                                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </nav>
+    <% console.log(carouselSlides[0].length) %>
