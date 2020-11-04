@@ -1,4 +1,4 @@
-<div class="row card-trans-white-border gradient-border" style="margin: 1vh -3vh 1vh -3vh; padding: 15px">
+<div class="row gradient-border card-hover" style="margin: 15px -25px 15px 0px; padding: 15px">
     <div class="col-2">
         <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
     </div>
@@ -45,13 +45,17 @@
                     <form action="/showcases/<%= post._id%>/like" method="POST">
                         <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
                             <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Like
-                            </button>
+                        </button>
                     </form>
                     <% } else { %>
                         <form action="/showcases/<%= post._id%>/like" method="POST">
                             <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
-                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Unlike
-                            </button>
+                            <span>
+                                <%= post.likes.length %>
+                                <i class="fa fa-thumbs-o-up sm-lr-spacing"></i>
+                            </span>
+                            Unlike
+                        </button>
                         </form>
                         <% } %>
             </div>

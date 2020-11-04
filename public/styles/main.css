@@ -21,7 +21,7 @@ login-page {
 body {
     background: rgb(2, 0, 36);
     background: linear-gradient(180deg, #020024 0%, #072a35 53%, #051542 100%);
-    color: #f4fffef1;
+    color: #f4fdfff1;
     font-family: 'Montserrat', sans-serif;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -78,6 +78,7 @@ textarea {
 
 .card-box {
     width: 280px;
+    margin: 0 auto;
 }
 
 body .carousel-indicators li {
@@ -94,7 +95,7 @@ body .carousel-control-next-icon {
 }
 
 body .no-padding {
-    padding-left: 8%;
+    padding-left: 6%;
     padding-right: 0;
 }
 
@@ -187,6 +188,23 @@ body .no-padding {
     background: #0d0118ea;
 }
 
+.card-hover {
+    background-image: linear-gradient(180deg, #2c63551c, #01223521);
+    transition: transform .2s ease-in;
+    overflow: hidden;
+}
+
+.card-hover:hover {
+    background-image: linear-gradient(0deg, #1e395c6e, #01223521);
+    transform: skewX(-1deg);
+}
+
+.card-trans-sg {
+    padding: 8px;
+    background: #0d011856;
+    border-radius: 10px 10px 0 0;
+}
+
 .the-blur {
     position: fixed;
     top: 0;
@@ -214,6 +232,24 @@ body .no-padding {
     border: 1px;
     border-style: none none solid none;
     border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+}
+
+.top-border {
+    border: 2px;
+    border-style: solid none none none;
+    border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+}
+
+.right-border {
+    border: 2px;
+    border-style: none solid none none;
+    border-image: linear-gradient(180deg, #004547, #a142fa) 1;
+}
+
+.left-border {
+    border: 2px;
+    border-style: none none none solid;
+    border-image: linear-gradient(0deg, #004547, #a142fa) 1;
 }
 
 
