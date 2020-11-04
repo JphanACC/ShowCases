@@ -19,7 +19,7 @@ const register = async(req, res) => {
         // create user with req.body and hashed password
         const createdUser = await db.User.create({...req.body, password: hash });
 
-        return res.redirect("/auth/login")
+        return res.redirect("/login")
             // .status(201)
             // .json({ status: 201, message: "success", createdUser });
     } catch (err) {
@@ -69,7 +69,7 @@ const showLogin = (req, res) => {
 const logout = async(req, res) => {
     //note: remove later
     await req.session.destroy();
-    res.redirect("/auth/login/");
+    res.redirect("/");
 };
 
 
