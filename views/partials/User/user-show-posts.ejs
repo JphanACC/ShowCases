@@ -3,6 +3,7 @@
         <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
     </div>
     <div class="col-9">
+        <!-- SECTION Post author/description-->
         <div class="bottom-border">
             <h5 class="mt-0 ">
                 <a href="/user/<%= post.User._id%>/profile">
@@ -21,7 +22,7 @@
                 </p>
             </div>
         </div>
-        <!-- Media -->
+        <!-- SECTION Media -->
         <div style="padding: 10px;">
             <% if (post.content_image) { %>
                 <div class="post-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
@@ -36,45 +37,50 @@
                                     mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                                 <% } %>
         </div>
-        <!-- Like/Edit/Follow -->
 
-        <div class="row sm-spacing float-right">
-            <div>
+        <!-- SECTION Like/Edit/Follow -->
+        <div class="row float-right">
+            <div class="sm-lr-spacing">
                 <% if (!post.likes.includes(currentUser._id)) { %>
                     <form action="/showcases/<%= post._id%>/like" method="POST">
-                        <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
-                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Like
+                        <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Like
                             </button>
                     </form>
                     <% } else { %>
                         <form action="/showcases/<%= post._id%>/like" method="POST">
-                            <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
-                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Unlike
+                            <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Unlike
                             </button>
                         </form>
                         <% } %>
             </div>
 
-            <div>
+            <!-- Edit Post  -->
+            <div class="sm-lr-spacing">
                 <% if (currentUser.id == post.User.id) { %>
                     <%- include ('./edit-post') %>
                         <% } %>
+
+                            <!-- Follow/Unfollow  -->
                             <% if (currentUser.id !== post.User.id && !post.User.Followers.includes(currentUser._id)) { %>
                                 <div>
                                     <form action="/showcases/<%= post._id%>/follow" method="POST">
-                                        <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Follow</button>
+                                        <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">Follow</button>
                                     </form>
                                 </div>
                                 <% } else if (currentUser.id !== post.User.id && post.User.Followers.includes(currentUser._id)) { %>
                                     <div>
                                         <form action="/showcases/<%= post._id%>/follow" method="POST">
-                                            <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Unfollow</button>
+                                            <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">Unfollow</button>
                                         </form>
                                     </div>
                                     <% } %>
             </div>
-            <div class="icon-size sm-spacing">
-                <button type="button" class="bttn-simple bttn-md bttn-default bttn-no-outline float-right" data-toggle="modal" data-target="#expandPost-<%= post._id %>"> <i class=" fa fa-expand icon-size"></i> </button>
+
+            <!-- expand window icon -->
+            <div class="sm-lr-spacing">
+                <button type="button" class="btn-scale-sm bttn-simple bttn-md bttn-default bttn-no-outline float-right" data-toggle="modal" data-target="#expandPost-<%= post._id %>"> <i class=" fa fa-expand icon-size"></i> </button>
             </div>
         </div>
 
