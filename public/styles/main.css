@@ -1,6 +1,6 @@
 /* SECTION Import */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 @font-face {
     font-family: Acquire;
     src: url("/assets/fonts/Aquire-BW0ox.otf");
@@ -22,7 +22,7 @@ body {
     background: rgb(2, 0, 36);
     background: linear-gradient(180deg, #020024 0%, #072a35 53%, #051542 100%);
     color: #f4fdfff1;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
