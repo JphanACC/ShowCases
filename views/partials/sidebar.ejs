@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="row">
+                <div class="col">
+                    Followers:
+                    <%= currentUser.Followers.length %>
+
+                </div>
+                <div class="col">
+                    Followings:
+                    <%= currentUser.Followings.length %>
+
+                </div>
+            </div>
+            <!-- Profile Card -->
+            <div class="row gradient-border" style="margin: 3px;">
+                <div class="col-4" style="top:15px">
+                    <div class="profile-photo img-scale" style="background-image: url('<%= currentUser.profileUrl %>')"></div>
+                </div>
+                <div class="col-8" style="font-size: 23px;">
+                    <p>Welcome,
+                        <%= currentUser.firstName %>
+                    </p>
+                    <p class="text-wraps" style="font-size: 12px;">
+                        <%= currentUser.email %>
+                    </p>
+                </div>
+                <div class="the-blur"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="/user/<%= currentUser._id %>/profile"><button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">My Profile</button></a>
+                </div>
+                <div class="col">
+                    <a href="/user/<%= currentUser._id %>/gallery"><button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">My Gallery</button></a>
+                </div>
+            </div>
+
+    </nav>
+
+    </div>

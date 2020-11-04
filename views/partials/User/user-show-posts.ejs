@@ -1,0 +1,90 @@
+<div class="row card-trans-white-border gradient-border" style="margin: 1vh -3vh 1vh -3vh; padding: 15px">
+    <div class="col-2">
+        <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
+    </div>
+    <div class="col-9">
+        <!-- SECTION Post author/description-->
+        <div class="bottom-border">
+            <h5 class="mt-0 ">
+                <a href="/user/<%= post.User._id%>/profile">
+                    <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline"><%= post.User.username%></button>
+                </a>
+            </h5>
+            <h6 style="font-size: 12px">
+                on:
+                <%= post.createdAt.toISOString().split('T')[0] %>
+            </h6>
+        </div>
+        <div class="bottom-border">
+            <div class="col" style="padding: 10px;">
+                <p>
+                    <%= post.description%>
+                </p>
+            </div>
+        </div>
+        <!-- SECTION Media -->
+        <div style="padding: 10px;">
+            <% if (post.content_image) { %>
+                <div class="post-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
+                <% } %>
+
+                    <% if (post.content_video) { %>
+                        <iframe width="400" height="255" src="https://www.youtube.com/embed/<%= post.content_video %>"></iframe>
+                        <% } %>
+
+                            <% if (post.content_3D) { %>
+                                <iframe width="400" height="255" src="https://sketchfab.com/models/<%= post.content_3D %>/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr"
+                                    mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                <% } %>
+        </div>
+
+        <!-- SECTION Like/Edit/Follow -->
+        <div class="row float-right">
+            <div class="sm-lr-spacing">
+                <% if (!post.likes.includes(currentUser._id)) { %>
+                    <form action="/showcases/<%= post._id%>/like" method="POST">
+                        <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Like
+                            </button>
+                    </form>
+                    <% } else { %>
+                        <form action="/showcases/<%= post._id%>/like" method="POST">
+                            <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up sm-lr-spacing"></i></span>Unlike
+                            </button>
+                        </form>
+                        <% } %>
+            </div>
+
+            <!-- Edit Post  -->
+            <div class="sm-lr-spacing">
+                <% if (currentUser.id == post.User.id) { %>
+                    <%- include ('./edit-post') %>
+                        <% } %>
+
+                            <!-- Follow/Unfollow  -->
+                            <% if (currentUser.id !== post.User.id && !post.User.Followers.includes(currentUser._id)) { %>
+                                <div>
+                                    <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                        <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">Follow</button>
+                                    </form>
+                                </div>
+                                <% } else if (currentUser.id !== post.User.id && post.User.Followers.includes(currentUser._id)) { %>
+                                    <div>
+                                        <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                            <button class="btn btn-lg bttn-simple bttn-sm bttn-default bttn-no-outline" type="submit">Unfollow</button>
+                                        </form>
+                                    </div>
+                                    <% } %>
+            </div>
+
+            <!-- expand window icon -->
+            <div class="sm-lr-spacing">
+                <button type="button" class="btn-scale-sm bttn-simple bttn-md bttn-default bttn-no-outline float-right" data-toggle="modal" data-target="#expandPost-<%= post._id %>"> <i class=" fa fa-expand icon-size"></i> </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include ('../modals/expand-post', {post: post}) %>

@@ -1,0 +1,231 @@
+/* SECTION Import */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@font-face {
+    font-family: Acquire;
+    src: url("/assets/fonts/Aquire-BW0ox.otf");
+}
+
+
+/* Base */
+
+html,
+body {
+    min-height: 100%;
+}
+
+login-page {
+    background-color: black;
+}
+
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, #020024 0%, #072a35 53%, #051542 100%);
+    color: #f4fffef1;
+    font-family: 'Montserrat', sans-serif;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+input[type="text"],
+textarea {
+    background-color: #d1d1d1;
+}
+
+
+/* Logo*/
+
+.font-logo {
+    font-family: Acquire;
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #3fe095, #29acf8);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: 24px;
+}
+
+
+/* Aldo figs */
+
+.carousel-inner {
+    height: 180px;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.c-item {
+    padding: 1px;
+    background-color: rgba(0, 13, 128, 0.151);
+    height: 100%;
+}
+
+.c-item-row {
+    padding: 2px;
+}
+
+.card-box {
+    width: 280px;
+}
+
+body .carousel-indicators li {
+    background-color: rgb(0, 81, 255);
+}
+
+body .carousel-indicators {
+    bottom: -25px;
+}
+
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon {
+    background-color: rgb(0, 195, 255);
+}
+
+body .no-padding {
+    padding-left: 8%;
+    padding-right: 0;
+}
+
+
+/* Features */
+
+.text-wraps {
+    word-break: break-all;
+}
+
+.sm-spacing {
+    margin: 0px 5px 0px 5px;
+    padding: 5px;
+}
+
+.sm-lr-spacing {
+    padding: 0 5px;
+}
+
+.btn-scale-sm {
+    line-height: 1.1;
+}
+
+
+/* trending images thumbnail sizes */
+
+.md-thumbnail {
+    width: 200px;
+    height: 126px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
+
+/* Photo */
+
+.img-scale {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.profile-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    -moz-box-shadow: 2px 2px 12px #000;
+    -webkit-box-shadow: 2px 2px 12px #000;
+    box-shadow: 2px 2px 12px #000;
+}
+
+.post-thumbnail {
+    width: 400px;
+    height: 255px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
+.post-sm-thumbnail {
+    width: 150px;
+    height: 150px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
+.post-lg-thumbnail {
+    width: 720px;
+    height: 480px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
+
+/* Card */
+
+.card-white-bg {
+    padding: 3px;
+    margin: 3px;
+    background-color: #d5ffff63;
+    border-radius: 5px;
+}
+
+.card-trans {
+    padding: 8px;
+    background: #0d0118ea;
+}
+
+.the-blur {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, .4);
+    z-index: 1010;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+}
+
+
+/* Border */
+
+.gradient-border {
+    border: 1px solid;
+    border-image: linear-gradient(45deg, #18a8ad, #a142fa) 1;
+}
+
+.bottom-border {
+    border: 1px;
+    border-style: none none solid none;
+    border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+}
+
+
+/* iframe */
+
+iframe {
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-style: double;
+    border-radius: 12px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0);
+}

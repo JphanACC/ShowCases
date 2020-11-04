@@ -1,0 +1,18 @@
+{
+    "user": [{
+            "username": "testdev1",
+            "firstName": "James",
+            "lastName": "Bond",
+            "email": "testdev1@gmail.com",
+            "password": "$2a$10$redQEye.nXNYRurviPeIg.jm0is/smKIJdTw1pL0KCoYu/uHSK0SC",
+            "createdAt": "2020-10-30T20:13:46.630Z",
+            "updatedAt": "2020-10-30T20:13:46.630Z"
+        },
+        {
+
+        },
+        {
+
+        }
+    ]
+}

@@ -4,51 +4,45 @@
 <%- include ('partials/head') %>
 
     <body>
-        <div class="container" style="padding-bottom: 200px">
+        <div class="container">
+
             <!-- Row 1 - Head Nav -->
             <div class="row">
                 <div class="col" style="padding: 55px;">
                     <%- include ('partials/head-nav') %>
                 </div>
             </div>
+
             <!-- Row 2 - Body  -->
             <div class="row">
+
                 <!-- Sidebar -->
                 <div class="col-3" style="margin: 0px 0px 0px 0px;">
                     <%- include ('partials/sidebar') %>
                 </div>
+
                 <!-- Main Content (Post/User Posts) -->
                 <div class="col-6">
-                    <div class="row">
-                        <div class="col">
-                            <%- include ('partials/User/user-post') %>
+                    <h3>My Gallery</h3>
+
+                    <!-- User posts-->
+                    <div class="container-fluid">
+                        <div class="row">
+                            <% eachPost.forEach((post) => { %>
+                                <%- include ('partials/User/user-media-posts', {post: post}) %>
+                                    <% }) %>
                         </div>
                     </div>
-                    <!-- User posts-->
-                    <% eachPost.forEach((post) => { %>
 
-                        <%- include ('partials/User/user-show-posts', {post: post}) %>
-                            <% }) %>
                 </div>
                 <!-- Followers  -->
                 <div class="col" style="margin: 0px 0px 0px 25px;">
-
                     <%- include ('partials/following') %>
-
                 </div>
             </div>
-            <!-- Row 3 - Footer Trending -->
-            <div class="d-flex justify-content-center">
-                <footer>Powered by Nope</footer>
-            </div>
         </div>
-        <div class="row" style="padding: 0px 0xp 0px 0px;">
-            <%- include ('partials/trending') %>
-        </div>
+        <!-- Modal -->
+        <%- include ('partials/modals/new-post') %>
     </body>
-
-    <!-- Modal -->
-    <%- include ('partials/modals/new-post') %>
-
 
 </html>

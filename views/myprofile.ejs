@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include ('partials/head') %>
+
+    <body>
+        <div class="container-fluid">
+
+            <!-- Row 1 - Head Nav -->
+            <div class="row">
+                <div class="col" style="padding: 55px;">
+                    <%- include ('partials/head-nav') %>
+                </div>
+            </div>
+
+            <!-- Row 2 - Body  -->
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-3" style="margin: 0px 0px 0px 0px;">
+                    <%- include ('partials/sidebar') %>
+                </div>
+
+                <!-- Main Content (Post/User Posts) -->
+                <div class="col-6">
+                    <div class="row">
+                        <p>
+                            User:
+                            <%= foundUser.username %>
+                                <br> First Name:
+                                <%= foundUser.firstName %>
+
+                                    <br> Last Name:
+                                    <%= foundUser.lastName %>
+
+                                        <br> Email Address:
+                                        <%= foundUser.email %>
+
+                                            <br> Joined Date:
+                                            <%= foundUser.createdAt %>
+                        </p>
+                    </div>
+                    <div>
+                        <% if (currentUser.id == foundUser.id) { %>
+                            <%- include ('partials/User/edit-profile.ejs') %>
+                                <% } %>
+                                    <hr/>
+                    </div>
+                    <div>
+                        <% eachPost.forEach((post) => { %>
+                            <%- include ('partials/User/user-show-posts', {post: post}) %>
+                                <% }) %>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <%- include ('partials/modals/new-post') %>
+    </body>
+
+</html>

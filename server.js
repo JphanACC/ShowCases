@@ -2,10 +2,11 @@
 const express = require("express");
 const methodOverride = require("method-override");
 const path = require("path");
-
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 /* internal modules*/
-// const db = require("./models");
+const db = require("./models");
 const routes = require("./routes");
 
 /*Instanced Modules */
@@ -22,10 +23,46 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(express.json());
 app.use(methodOverride("_method"));
 
-//Admin Home
-app.use("/showcase", routes.app);
+//SECTION Session setup
+app.use(
+    session({
+        resave: false,
+        saveUninitialized: false,
+        secret: "FunnyMan",
+        store: new MongoStore({
+            url: "mongodb://localhost:27017/showcases",
+        }),
+        cookie: {
+            // milliseconds
+            // 1000 (one second) * 60 (one minute) * 60 (one hour) * 24 (one day) * 7 (one week) * 2
+            maxAge: 1000 * 60 * 60 * 24 * 7 * 2,
+        },
+    })
+);
+
+const authRequired = function(req, res, next) {
+    if (!req.session.currentUser) {
+        return res.redirect("/auth/login");
+    }
+    next();
+};
+
+app.use(function(req, res, next) {
+    res.locals.user = req.session.currentUser; // adds the user to all ejs views
+    next();
+});
+
+//SECTION Server-based Application
+//App route
+app.use("/showcases", authRequired, routes.app);
+//Auth route
+app.use("/auth", routes.auth);
+//User route
+app.use("/user", authRequired, routes.user);
+
 
 
 /* Server Listener*/
