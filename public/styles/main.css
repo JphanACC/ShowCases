@@ -16,6 +16,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+login-page {
+    background-color: black;
+}
+
 a,
 a:hover,
 a:focus,
@@ -43,7 +47,7 @@ a:active {
 /* Aldo figs */
 
 .carousel-inner {
-    height: 250px;
+    height: 180px;
 }
 
 .carousel-item {
@@ -57,7 +61,11 @@ a:active {
 }
 
 .c-item-row {
-    padding: 25px;
+    padding: 2px;
+}
+
+.card-box {
+    width: 280px;
 }
 
 
@@ -79,7 +87,7 @@ body .carousel-indicators li {
 }
 
 body .carousel-indicators {
-    bottom: 0;
+    bottom: -25px;
 }
 
 body .carousel-control-prev-icon,
@@ -87,11 +95,10 @@ body .carousel-control-next-icon {
     background-color: rgb(0, 195, 255);
 }
 
-
-/* body .no-padding {
+body .no-padding {
     padding-left: 0;
     padding-right: 0;
-} */
+}
 
 
 /* Features */
@@ -110,7 +117,7 @@ body .carousel-control-next-icon {
 
 .md-thumbnail {
     width: 200px;
-    height: 150px;
+    height: 126px;
     -moz-box-shadow: 4px 4px 14px #000;
     -webkit-box-shadow: 4px 4px 14px #000;
     box-shadow: 4px 4px 14px #000;

@@ -18,7 +18,7 @@
                     <%- include ('partials/sidebar') %>
                 </div>
                 <!-- Main Content (Post/User Posts) -->
-                <div class="col-8">
+                <div class="col-6">
                     <div class="row">
                         <p>
                             User:
@@ -36,21 +36,20 @@
                                             <%= foundUser.createdAt %>
                         </p>
                     </div>
+                    <div>
+                        <% if (currentUser.id == foundUser.id) { %>
+                            <%- include ('partials/User/edit-profile.ejs') %>
+                                <% } %>
+                                    <hr/>
+                    </div>
+                    <div>
+                        <% eachPost.forEach((post) => { %>
+                            <%- include ('partials/User/user-show-posts', {post: post}) %>
+                                <% }) %>
+                    </div>
 
-                    <% if (currentUser.id == foundUser.id) { %>
-                        <%- include ('partials/User/edit-profile.ejs') %>
-                            <% } %>
-                                <hr/>
-                                <% eachPost.forEach((post) => { %>
-                                    <div class="row">
-
-                                        <%- include ('partials/User/user-show-posts', {post: post}) %>
-                                    </div>
-                                    <% }) %>
                 </div>
-                <!-- User posts-->
             </div>
-        </div>
     </body>
 
 </html>

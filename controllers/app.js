@@ -6,7 +6,6 @@ const index = async(req, res) => {
         const foundPost = await db.Post.find({}).populate("User").sort({ "createdAt": -1 })
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.session.currentUser.id).populate("Followings");
-
         const sortedLikes = await db.Post.aggregate([
             // project with an array length
             {
@@ -27,7 +26,9 @@ const index = async(req, res) => {
         let trendingPost = await db.User.populate(sortedLikes, { "path": "User" })
         trendingPost = trendingPost.filter(post => post.content_image || post.content_video || post.content_3D)
 
-        const carouselSlides = Array.from({ length: Math.ceil(trendingPost.length / 5) }, (v, i) => trendingPost.slice(i * 5, i * 5 + 5));
+        //algorithm credits go to https://www.w3resource.com/javascript-exercises/fundamental/javascript-fundamental-exercise-265.php
+        const carouselSlides = Array.from({ length: Math.ceil(trendingPost.length / 4) },
+            (v, i) => trendingPost.slice(i * 4, i * 4 + 4));
 
         res.render('index', {
             title: "Home Page",
@@ -78,7 +79,7 @@ const addPost = async(req, res) => {
     }
 };
 
-//Like
+//SECTION Like
 const likePost = async(req, res) => {
     try {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
@@ -87,7 +88,7 @@ const likePost = async(req, res) => {
         if (foundPost.likes.length === 0) {
             foundPost.likes.push(req.session.currentUser.id)
             await foundPost.save();
-            res.redirect("/showcases/");
+
         } else {
             const isInLikes = foundPost.likes.includes(foundCurrentUser._id)
 
@@ -96,7 +97,7 @@ const likePost = async(req, res) => {
                 await foundPost.save();
             }
 
-            res.redirect("/showcases/");
+
         }
     } catch (error) {
         console.log(error)
@@ -105,15 +106,17 @@ const likePost = async(req, res) => {
     }
 }
 
-//Follow
+// SECTION Follow
 const followUser = async(req, res) => {
     try {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
 
-
-
-        //Pseudo-Code
+        //Check if current user's following section has target post user
+        const isInFollowing = foundCurrentUser.Followings.includes(foundPost.User._id)
+            //Check if target post user's followers has current users id or not
+        const isInFollower = foundPost.User.Followers.includes(foundCurrentUser._id)
+            //Pseudo-Code
 
         //if post user's followers are empty
         //if current user's following is empty
@@ -127,27 +130,38 @@ const followUser = async(req, res) => {
             } else {
                 //Current user
                 //Following: Post's user (unique)
-                const isInFollowing = foundCurrentUser.Followings.includes(foundPost.User._id)
-                const isInFollower = foundPost.User.Followers.includes(foundCurrentUser._id)
 
+                //if current user is not in post user's following
                 if (!isInFollowing && !isInFollower) {
                     foundCurrentUser.Followings.push(foundPost.User._id)
                     foundPost.User.Followers.push(foundCurrentUser.id)
                     await foundCurrentUser.save()
                     await foundPost.User.save()
                 }
+
+
+                //Unfollow
+                if (isInFollowing && isInFollower) {
+
+                    foundCurrentUser.Followings.filter((id) => isInFollowing)
+                    foundPost.User.Followers.filter((id) => isInFollower)
+
+                    await foundCurrentUser.save()
+                    await foundPost.User.save()
+                }
             }
+
         } else {
             res.send('<script>alert("You cant like your own post");</script>');
             res.redirect("/showcases/");
         }
 
         //Check
-        // console.log("Current User Model status:")
-        // console.log(foundCurrentUser)
+        console.log("Current User Model status:")
+        console.log(foundCurrentUser)
 
-        console.log("Found Post User Model status:")
-        console.log(foundPost.User)
+        // console.log("Found Post User Model status:")
+        // console.log(foundPost.User)
 
         res.redirect("/showcases/")
     } catch (error) {

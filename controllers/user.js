@@ -1,5 +1,30 @@
 const db = require("../models");
 
+//My Gallery
+const galleryShow = async(req, res) => {
+    try {
+        const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
+        const foundUser = await db.User.findById(req.params.id).populate("Followings");
+        const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
+        const foundUserPosts = await db.Post.find({
+            User: foundUser.id
+        }).populate("User").sort({ "createdAt": -1 })
+
+
+        res.render('mygallery', {
+            title: "My Gallery",
+            eachPost: foundUserPosts,
+            currentUser: foundCurrentUser,
+            foundUser: foundUser,
+            foundcurrentFollowing: foundcurrentFollowing,
+        })
+    } catch (error) {
+        console.log(error)
+        return res.redirect("404")
+    }
+};
+
+//My Profile
 const show = async(req, res) => {
     try {
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
@@ -98,4 +123,5 @@ module.exports = {
     editProfile,
     editPost,
     deletePost,
+    galleryShow,
 };

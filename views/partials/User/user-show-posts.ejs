@@ -3,14 +3,20 @@
         <div class="profile-photo img-scale" style="background-image: url('<%= post.User.profileUrl %>')"></div>
     </div>
     <div class="col-9">
-        <h5 class="mt-0">
-            <a href="/user/<%= post.User._id%>/profile">
-                <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline"><%= post.User.username%></button>
-            </a>
-        </h5>
-        <p>
-            <%= post.description%>
-        </p>
+        <div class="bottom-border">
+            <h5 class="mt-0 ">
+                <a href="/user/<%= post.User._id%>/profile">
+                    <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline"><%= post.User.username%></button>
+                </a>
+            </h5>
+        </div>
+        <div class="bottom-border">
+            <div class="col">
+                <p>
+                    <%= post.description%>
+                </p>
+            </div>
+        </div>
         <!-- Media -->
         <div style="padding: 10px;">
             <% if (post.content_image) { %>
@@ -38,11 +44,19 @@
                 <% if (currentUser.id == post.User.id) { %>
                     <%- include ('./edit-post') %>
                         <% } %>
-                            <% if (currentUser.id !== post.User.id) { %>
-                                <form action="/showcases/<%= post._id%>/follow" method="POST">
-                                    <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Follow</button>
-                                </form>
-                                <% } %>
+                            <% if (currentUser.id !== post.User.id && !post.User.Followers.includes(currentUser._id)) { %>
+                                <div>
+                                    <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                        <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Follow</button>
+                                    </form>
+                                </div>
+                                <% } else if (currentUser.id !== post.User.id && post.User.Followers.includes(currentUser._id)) { %>
+                                    <div>
+                                        <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                            <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Unfollow</button>
+                                        </form>
+                                    </div>
+                                    <% } %>
             </div>
 
         </div>
