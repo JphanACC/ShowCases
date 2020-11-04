@@ -58,7 +58,7 @@ app.use(function(req, res, next) {
 
 //SECTION Server-based Application
 //App route
-app.use("/showcases", authRequired, routes.app);
+app.use("/", authRequired, routes.app);
 //Auth route
 app.use("/auth", routes.auth);
 //User route
