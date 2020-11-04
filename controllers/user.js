@@ -28,7 +28,7 @@ const galleryShow = async(req, res) => {
 //My Profile
 const show = async(req, res) => {
     try {
-        const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
+        const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundUser = await db.User.findById(req.params.id).populate("Followings");
         const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
         const foundUserPosts = await db.Post.find({

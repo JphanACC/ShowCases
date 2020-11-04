@@ -40,24 +40,25 @@
                         </p>
                     </div>
 
+                    <!-- Edit/Show User Gallery option-->
                     <div class="bottom-border" style="padding-bottom: 10px;">
-                    
-                    <% if (currentUser.id == foundUser.id) { %>
-                        
-                        <%- include ('partials/User/edit-profile.ejs') %>
-
-                    <% } else { %>
-                         <a href="/user/<%= foundUser._id %>/gallery"><button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">User Gallery</button></a>           
-                    <% } %>
-
+                        <% if (currentUser.id == foundUser.id) { %>
+                            <%- include ('partials/User/edit-profile.ejs') %>
+                        <% } else { %>
+                            <a href="/user/<%= foundUser._id %>/gallery"><button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">User Gallery</button></a>           
+                        <% } %>
                     </div>
 
+                    <!-- User posts-->
                     <div>
                         <% eachPost.forEach((post) => { %>
                             <%- include ('partials/User/user-show-posts', {post: post}) %>
                         <% }) %>
                     </div>
-
+                </div>
+                <!-- Followers  -->
+                <div class="col left-border" style="margin: 0px 0px 0px 25px;">
+                    <%- include ('partials/following', {currentUser: foundUser}) %>
                 </div>
             </div>
 
