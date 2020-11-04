@@ -46,7 +46,7 @@ app.use(
 
 const authRequired = function(req, res, next) {
     if (!req.session.currentUser) {
-        return res.redirect("/auth/login");
+        return res.redirect("/");
     }
     next();
 };
@@ -60,7 +60,7 @@ app.use(function(req, res, next) {
 //App route
 app.use("/showcases", authRequired, routes.app);
 //Auth route
-app.use("/auth", routes.auth);
+app.use("/", routes.auth);
 //User route
 app.use("/user", authRequired, routes.user);
 
