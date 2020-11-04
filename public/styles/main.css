@@ -9,15 +9,22 @@
 
 /* Base */
 
+html,
 body {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(180deg, #020024 0%, #0a3d4d 53%, #051542 100%);
-    color: #f4fffef1;
-    font-family: 'Montserrat', sans-serif;
+    min-height: 100%;
 }
 
 login-page {
     background-color: black;
+}
+
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, #020024 0%, #072a35 53%, #051542 100%);
+    color: #f4fffef1;
+    font-family: 'Montserrat', sans-serif;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 a,
@@ -26,6 +33,11 @@ a:focus,
 a:active {
     text-decoration: none;
     color: inherit;
+}
+
+input[type="text"],
+textarea {
+    background-color: #d1d1d1;
 }
 
 
@@ -153,6 +165,14 @@ body .no-padding {
     box-shadow: 4px 4px 14px #000;
 }
 
+.post-sm-thumbnail {
+    width: 150px;
+    height: 150px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
 
 /* Card */
 
@@ -188,7 +208,7 @@ body .no-padding {
 
 .gradient-border {
     border: 1px solid;
-    border-image: linear-gradient(45deg, #004547, #a142fa) 1;
+    border-image: linear-gradient(45deg, #18a8ad, #a142fa) 1;
 }
 
 .bottom-border {

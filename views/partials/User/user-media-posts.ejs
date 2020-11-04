@@ -1,0 +1,21 @@
+<div class="col-4">
+    <div>
+        On
+        <%= post.createdAt.toISOString().split('T')[0] %>
+            <!-- Media -->
+            <div style="padding: 2px;">
+                <% if (post.content_image) { %>
+                    <div class="post-sm-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
+                    <% } %>
+
+                        <% if (post.content_video) { %>
+                            <iframe width="150" height="150" src="https://www.youtube.com/embed/<%= post.content_video %>"></iframe>
+                            <% } %>
+
+                                <% if (post.content_3D) { %>
+                                    <iframe width="150" height="150" src="https://sketchfab.com/models/<%= post.content_3D %>/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr"
+                                        mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                    <% } %>
+            </div>
+    </div>
+</div>

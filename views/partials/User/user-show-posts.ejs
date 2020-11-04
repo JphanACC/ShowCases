@@ -34,11 +34,21 @@
         </div>
         <!-- Like/Edit/Follow -->
         <div class="row sm-spacing float-right">
-            <form action="/showcases/<%= post._id%>/like" method="POST">
-                <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
-                    <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>
-                </button>
-            </form>
+            <div>
+                <% if (!post.likes.includes(currentUser._id)) { %>
+                    <form action="/showcases/<%= post._id%>/like" method="POST">
+                        <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Like
+                            </button>
+                    </form>
+                    <% } else { %>
+                        <form action="/showcases/<%= post._id%>/like" method="POST">
+                            <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
+                            <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Unlike
+                            </button>
+                        </form>
+                        <% } %>
+            </div>
 
             <div>
                 <% if (currentUser.id == post.User.id) { %>

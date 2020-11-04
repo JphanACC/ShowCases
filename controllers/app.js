@@ -90,15 +90,18 @@ const likePost = async(req, res) => {
             await foundPost.save();
 
         } else {
-            const isInLikes = foundPost.likes.includes(foundCurrentUser._id)
+            const isInLikes = foundPost.likes.map(id => id.toString()).includes(foundCurrentUser._id.toString())
 
             if (isInLikes === false) {
                 foundPost.likes.push(foundCurrentUser._id)
-                await foundPost.save();
+            } else {
+                foundPost.likes = foundPost.likes.filter((id) => id.toString() !== foundCurrentUser.id.toString())
             }
 
-
+            await foundPost.save();
         }
+
+        return res.redirect("/showcases/")
     } catch (error) {
         console.log(error)
 
@@ -112,53 +115,40 @@ const followUser = async(req, res) => {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
 
+        // string conversion is important here for the comparison
         //Check if current user's following section has target post user
-        const isInFollowing = foundCurrentUser.Followings.includes(foundPost.User._id)
-            //Check if target post user's followers has current users id or not
-        const isInFollower = foundPost.User.Followers.includes(foundCurrentUser._id)
-            //Pseudo-Code
+        const isInFollowing = foundCurrentUser.Followings.map(id => id.toString()).includes(foundPost.User._id.toString())
+
+        //Check if target post user's followers has current users id or not
+        const isInFollower = foundPost.User.Followers.map(id => id.toString()).includes(foundCurrentUser._id.toString())
+
 
         //if post user's followers are empty
         //if current user's following is empty
         if (foundCurrentUser.id !== foundPost.User.id) {
-            if (foundCurrentUser.Followings.length === 0 || foundPost.User.Followers.length === 0) {
+            // the way you had it before is
+            // if () then follow. if() then unfollow
+            // whereas it should have been if () then follow, else then unfollow
+            if (isInFollowing && isInFollower) {
+                // unfollow
+                // string conversion is important here for the comparison
+                foundCurrentUser.Followings = foundCurrentUser.Followings.filter((id) => id.toString() !== foundPost.User._id.toString())
+                foundPost.User.Followers = foundPost.User.Followers.filter((id) => id.toString() !== foundCurrentUser.id.toString())
+            } else {
+                // follow
                 foundCurrentUser.Followings.push(foundPost.User._id)
                 foundPost.User.Followers.push(foundCurrentUser.id)
-                await foundCurrentUser.save()
-                await foundPost.User.save();
-
-            } else {
-                //Current user
-                //Following: Post's user (unique)
-
-                //if current user is not in post user's following
-                if (!isInFollowing && !isInFollower) {
-                    foundCurrentUser.Followings.push(foundPost.User._id)
-                    foundPost.User.Followers.push(foundCurrentUser.id)
-                    await foundCurrentUser.save()
-                    await foundPost.User.save()
-                }
-
-
-                //Unfollow
-                if (isInFollowing && isInFollower) {
-
-                    foundCurrentUser.Followings.filter((id) => isInFollowing)
-                    foundPost.User.Followers.filter((id) => isInFollower)
-
-                    await foundCurrentUser.save()
-                    await foundPost.User.save()
-                }
             }
-
+            await foundCurrentUser.save()
+            await foundPost.User.save();
         } else {
-            res.send('<script>alert("You cant like your own post");</script>');
+            res.send('<script>alert("You cant follow your own post");</script>');
             res.redirect("/showcases/");
         }
 
         //Check
-        console.log("Current User Model status:")
-        console.log(foundCurrentUser)
+        // console.log("Current User Model status:")
+        // console.log(foundCurrentUser)
 
         // console.log("Found Post User Model status:")
         // console.log(foundPost.User)

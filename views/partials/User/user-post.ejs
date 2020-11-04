@@ -5,35 +5,3 @@
     </button>
     </div>
 </div>
-
-
-<div class="modal fade" id="NewPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-        <div class="modal-content card-trans gradient-border">
-            <div class="modal-header">
-                <h4 class="modal-title">New Your Post</h4>
-            </div>
-            <form action="/showcases/" method="POST">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="content-description">Post Description</label>
-                                <textarea type="text" class="form-control card-trans" name="description" maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required></textarea>
-                            </div>
-
-                            <input type="text" name="content_video" class="card-trans" placeholder="Video URL">
-                            <input type="text" name="content_image" class="card-trans" placeholder="Image URL">
-                            <input type="text" name="content_3D" class="card-trans" placeholder="3D URL">
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="bttn-float bttn-md bttn-default bttn-block bttn-no-outline">New Post</button>
-            </form>
-            </div>
-        </div>
-    </div>
-</div>

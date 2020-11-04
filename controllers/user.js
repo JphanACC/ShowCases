@@ -10,10 +10,11 @@ const galleryShow = async(req, res) => {
             User: foundUser.id
         }).populate("User").sort({ "createdAt": -1 })
 
+        const filteredPosts = foundUserPosts.filter(post => post.content_image || post.content_video || post.content_3D)
 
         res.render('mygallery', {
             title: "My Gallery",
-            eachPost: foundUserPosts,
+            eachPost: filteredPosts,
             currentUser: foundCurrentUser,
             foundUser: foundUser,
             foundcurrentFollowing: foundcurrentFollowing,

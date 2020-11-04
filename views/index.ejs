@@ -4,7 +4,7 @@
 <%- include ('partials/head') %>
 
     <body>
-        <div class="container">
+        <div class="container" style="padding-bottom: 200px">
             <!-- Row 1 - Head Nav -->
             <div class="row">
                 <div class="col" style="padding: 55px;">
@@ -38,10 +38,16 @@
                 </div>
             </div>
             <!-- Row 3 - Footer Trending -->
-            <div class="row" style="padding: 0px 0xp 0px 0px;">
-                <%- include ('partials/trending') %>
+            <div class="d-flex justify-content-center">
+                <footer>Powered by Nope</footer>
             </div>
         </div>
+        <div class="row" style="padding: 0px 0xp 0px 0px;">
+            <%- include ('partials/trending') %>
+        </div>
     </body>
+
+    <!-- Modal -->
+    <%- include ('partials/modals/new-post') %>
 
 </html>

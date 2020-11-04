@@ -5,35 +5,44 @@
 
     <body>
         <div class="container">
+
             <!-- Row 1 - Head Nav -->
             <div class="row">
                 <div class="col" style="padding: 55px;">
                     <%- include ('partials/head-nav') %>
                 </div>
             </div>
+
             <!-- Row 2 - Body  -->
             <div class="row">
+
                 <!-- Sidebar -->
                 <div class="col-3" style="margin: 0px 0px 0px 0px;">
                     <%- include ('partials/sidebar') %>
                 </div>
+
                 <!-- Main Content (Post/User Posts) -->
                 <div class="col-6">
+                    <h3>My Gallery</h3>
 
                     <!-- User posts-->
-                    <% eachPost.forEach((post) => { %>
-                        <%- include ('partials/User/user-media-posts', {post: post}) %>
-                            <% }) %>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <% eachPost.forEach((post) => { %>
+                                <%- include ('partials/User/user-media-posts', {post: post}) %>
+                                    <% }) %>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- Followers  -->
                 <div class="col" style="margin: 0px 0px 0px 25px;">
-
                     <%- include ('partials/following') %>
-
                 </div>
             </div>
-
         </div>
+        <!-- Modal -->
+        <%- include ('partials/modals/new-post') %>
     </body>
 
 </html>
