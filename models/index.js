@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const connectionString =
-    process.env.MONGODB_URL || "mongodb://localhost:27017/showcases";
+    process.env.MONGODB_URI || "mongodb://localhost:27017/showcases";
 const configOptions = {
     useNewUrlParser: true,
     useCreateIndex: true,

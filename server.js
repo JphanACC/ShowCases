@@ -34,7 +34,7 @@ app.use(
         saveUninitialized: false,
         secret: "FunnyMan",
         store: new MongoStore({
-            url: process.env.MONGODB_URL || "mongodb://localhost:27017/showcases",
+            url: process.env.MONGODB_URI || "mongodb://localhost:27017/showcases",
         }),
         cookie: {
             // milliseconds
