@@ -1,49 +1,52 @@
 <% let startOfArray = true; %>
-    <nav class="fixed-bottom">
-        <div class="container">
-            <div class="row">
-                Trending now!
+
+<nav class="fixed-bottom">
+    <div class="container-fluid">
+        <div class="row card-trans-sg">
+            <div class="col-2">
+            Trending now!
             </div>
         </div>
+    </div>
 
-        <div class="container-fluid card-trans">
-            <div class="row">
-                <div class="col">
-                    <div id="trending-carousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ul class="carousel-indicators no-padding">
-                            <% for (let i = 0; i < carouselSlides.length; i++) { %>
-                                <li data-target="#trending-carousel" data-slide-to="<%= i %>" class="<%= startOfArray ? " active " : " " %>"></li>
-                                <% startOfArray = false %>
+    <div class="container-fluid card-trans top-border">
+        <div class="row">
+            <div class="col">
+                <div id="trending-carousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators no-padding">
+                        <% for (let i = 0; i < carouselSlides.length; i++) { %>
+                            <li data-target="#trending-carousel" data-slide-to="<%= i %>" class="<%= startOfArray ? " active " : " " %>"></li>
+                            <% startOfArray = false %>
+                        <% } %>
+                            <% startOfArray = true %>
+                    </ul>
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner no-padding">
+                        <% let index = 0 %>
+                        <% for (const slide of carouselSlides) { %>
+                            <div class="carousel-item<%= startOfArray ? " active " : " " %>">
+                                <div class="row c-item-row">
+                                    <% for (const post of slide) { %>
+                                        <%- include ('./carousel-items/carousel-item', {index: index}) %>
+                                        <% index++ %>
                                     <% } %>
-                                        <% startOfArray = true %>
-                        </ul>
-
-                        <!-- The slideshow -->
-                        <div class="carousel-inner no-padding">
-                            <% let index = 0 %>
-                                <% for (const slide of carouselSlides) { %>
-                                    <div class="carousel-item<%= startOfArray ? " active " : " " %>">
-                                        <div class="row align-items-center c-item-row">
-                                            <% for (const post of slide) { %>
-                                                <%- include ('./carousel-items/carousel-item', {index: index}) %>
-                                                    <% index++ %>
-                                                        <% } %>
-                                        </div>
-                                    </div>
-                                    <% startOfArray = false %>
-                                        <% } %>
-                                            <% startOfArray = true %>
-                                                <!-- Left and right controls -->
-                                                <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
-                                                    <span class="fa fa-caret-left" style="width:100px"></span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
-                                                    <span class="fa fa-caret-right"></span>
-                                                </a>
-                        </div>
+                                </div>
+                            </div>
+                            <% startOfArray = false %>
+                        <% } %>
+                            <% startOfArray = true %>
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#trending-carousel" data-slide="prev">
+                            <span class="fa fa-caret-left" style="width:100px"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#trending-carousel" data-slide="next">
+                            <span class="fa fa-caret-right"></span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>

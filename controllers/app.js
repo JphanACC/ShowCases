@@ -115,7 +115,6 @@ const followUser = async(req, res) => {
         const foundPost = await db.Post.findById(req.params.id).populate("User");
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id);
 
-        // string conversion is important here for the comparison
         //Check if current user's following section has target post user
         const isInFollowing = foundCurrentUser.Followings.map(id => id.toString()).includes(foundPost.User._id.toString())
 
@@ -123,15 +122,9 @@ const followUser = async(req, res) => {
         const isInFollower = foundPost.User.Followers.map(id => id.toString()).includes(foundCurrentUser._id.toString())
 
 
-        //if post user's followers are empty
-        //if current user's following is empty
         if (foundCurrentUser.id !== foundPost.User.id) {
-            // the way you had it before is
-            // if () then follow. if() then unfollow
-            // whereas it should have been if () then follow, else then unfollow
             if (isInFollowing && isInFollower) {
                 // unfollow
-                // string conversion is important here for the comparison
                 foundCurrentUser.Followings = foundCurrentUser.Followings.filter((id) => id.toString() !== foundPost.User._id.toString())
                 foundPost.User.Followers = foundPost.User.Followers.filter((id) => id.toString() !== foundCurrentUser.id.toString())
             } else {
@@ -145,13 +138,6 @@ const followUser = async(req, res) => {
             res.send('<script>alert("You cant follow your own post");</script>');
             res.redirect("/showcases/");
         }
-
-        //Check
-        // console.log("Current User Model status:")
-        // console.log(foundCurrentUser)
-
-        // console.log("Found Post User Model status:")
-        // console.log(foundPost.User)
 
         res.redirect("/showcases/")
     } catch (error) {

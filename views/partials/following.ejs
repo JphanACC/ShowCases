@@ -10,7 +10,7 @@
         <ul class="list-unstyled components">
             <% currentUser.Followings.forEach((following) => { %>
                 <a href="/user/<%= following.id%>/profile">
-                    <div class="row gradient-border" style="margin: 2px;">
+                    <div class="row gradient-border card-hover" style="margin: 2px;">
                         <div class="col-3" style="top:15px">
                             <div class="profile-photo img-scale" style="background-image: url('<%= following.profileUrl %>'); width: 45px; height: 45px;"></div>
                         </div>
@@ -22,7 +22,6 @@
                                 <%= following.email %>
                             </p>
                         </div>
-                        <div class="the-blur"></div>
                     </div>
                 </a>
                 <% }) %>

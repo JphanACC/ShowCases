@@ -4,7 +4,7 @@
 <%- include ('partials/head') %>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
             <!-- Row 1 - Head Nav -->
             <div class="row">
@@ -26,31 +26,39 @@
                         <p>
                             User:
                             <%= foundUser.username %>
-                                <br> First Name:
-                                <%= foundUser.firstName %>
+                            <br> First Name:
+                            <%= foundUser.firstName %>
 
-                                    <br> Last Name:
-                                    <%= foundUser.lastName %>
+                            <br> Last Name:
+                            <%= foundUser.lastName %>
 
-                                        <br> Email Address:
-                                        <%= foundUser.email %>
+                            <br> Email Address:
+                            <%= foundUser.email %>
 
-                                            <br> Joined Date:
-                                            <%= foundUser.createdAt %>
+                            <br> Joined Date:
+                            <%= foundUser.createdAt.toISOString().split('T')[0] %>
                         </p>
                     </div>
-                    <div>
+
+                    <!-- Edit/Show User Gallery option-->
+                    <div class="bottom-border" style="padding-bottom: 10px;">
                         <% if (currentUser.id == foundUser.id) { %>
                             <%- include ('partials/User/edit-profile.ejs') %>
-                                <% } %>
-                                    <hr/>
+                        <% } else { %>
+                            <a href="/user/<%= foundUser._id %>/gallery"><button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">User Gallery</button></a>           
+                        <% } %>
                     </div>
+
+                    <!-- User posts-->
                     <div>
                         <% eachPost.forEach((post) => { %>
                             <%- include ('partials/User/user-show-posts', {post: post}) %>
-                                <% }) %>
+                        <% }) %>
                     </div>
-
+                </div>
+                <!-- Followers  -->
+                <div class="col left-border" style="margin: 0px 0px 0px 25px;">
+                    <%- include ('partials/following', {currentUser: foundUser}) %>
                 </div>
             </div>
 
