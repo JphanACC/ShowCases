@@ -9,9 +9,13 @@
                     <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline"><%= post.User.username%></button>
                 </a>
             </h5>
+            <h6 style="font-size: 12px">
+                on:
+                <%= post.createdAt.toISOString().split('T')[0] %>
+            </h6>
         </div>
         <div class="bottom-border">
-            <div class="col">
+            <div class="col" style="padding: 10px;">
                 <p>
                     <%= post.description%>
                 </p>
@@ -33,6 +37,7 @@
                                 <% } %>
         </div>
         <!-- Like/Edit/Follow -->
+
         <div class="row sm-spacing float-right">
             <div>
                 <% if (!post.likes.includes(currentUser._id)) { %>
@@ -68,8 +73,12 @@
                                     </div>
                                     <% } %>
             </div>
-
+            <div class="icon-size sm-spacing">
+                <button type="button" class="bttn-simple bttn-md bttn-default bttn-no-outline float-right" data-toggle="modal" data-target="#expandPost-<%= post._id %>"> <i class=" fa fa-expand icon-size"></i> </button>
+            </div>
         </div>
 
     </div>
 </div>
+
+<%- include ('../modals/expand-post', {post: post}) %>

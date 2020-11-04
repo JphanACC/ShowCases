@@ -1,0 +1,78 @@
+<div class="modal fade" id="expandPost-<%= post._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document ">
+        <div class="modal-content card-trans gradient-border ">
+            <div class="modal-header ">
+                <a href="/user/<%=post.User._id%>/profile">
+                    <button class="bttn-minimal bttn-sm bttn-default bttn-no-outline">By <%= post.User.username%></button>
+                </a>
+                on:
+                <%= post.createdAt.toISOString().split('T')[0] %>
+            </div>
+
+            <div class="modal-body">
+                <!-- Post description -->
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <%= post.description%>
+                        </p>
+                    </div>
+                </div>
+                <!-- Media -->
+                <div style="padding: 10px;">
+                    <% if (post.content_image) { %>
+                        <div class="post-lg-thumbnail img-scale" style="background-image: url('<%=post.content_image%>')"></div>
+                        <% } %>
+
+                            <% if (post.content_video) { %>
+                                <iframe width="720" height="480" src="https://www.youtube.com/embed/<%= post.content_video %>"></iframe>
+                                <% } %>
+
+                                    <% if (post.content_3D) { %>
+                                        <iframe width="720" height="480" src="https://sketchfab.com/models/<%= post.content_3D %>/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr"
+                                            mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                                        <% } %>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="row sm-spacing float-right">
+                    <div>
+                        <% if (!post.likes.includes(currentUser._id)) { %>
+                            <form action="/showcases/<%= post._id%>/like" method="POST">
+                                <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
+                                    <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Like
+                                    </button>
+                            </form>
+                            <% } else { %>
+                                <form action="/showcases/<%= post._id%>/like" method="POST">
+                                    <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">
+                                    <span><%= post.likes.length %><i class="fa fa-thumbs-o-up" style="padding: 5px;"></i></span>Unlike
+                                    </button>
+                                </form>
+                                <% } %>
+                    </div>
+
+                    <div>
+                        <% if (currentUser.id == post.User.id) { %>
+
+                            <% } %>
+                                <% if (currentUser.id !== post.User.id && !post.User.Followers.includes(currentUser._id)) { %>
+                                    <div>
+                                        <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                            <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Follow</button>
+                                        </form>
+                                    </div>
+                                    <% } else if (currentUser.id !== post.User.id && post.User.Followers.includes(currentUser._id)) { %>
+                                        <div>
+                                            <form action="/showcases/<%= post._id%>/follow" method="POST">
+                                                <button class="bttn-simple bttn-sm bttn-default bttn-no-outline sm-spacing" type="submit">Unfollow</button>
+                                            </form>
+                                        </div>
+                                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

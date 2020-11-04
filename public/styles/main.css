@@ -136,7 +136,11 @@ body .no-padding {
 }
 
 
-/* Main */
+/* scale div */
+
+.icon-size {
+    font-size: 15px;
+}
 
 
 /* Photo */
@@ -168,6 +172,14 @@ body .no-padding {
 .post-sm-thumbnail {
     width: 150px;
     height: 150px;
+    -moz-box-shadow: 4px 4px 14px #000;
+    -webkit-box-shadow: 4px 4px 14px #000;
+    box-shadow: 4px 4px 14px #000;
+}
+
+.post-lg-thumbnail {
+    width: 720px;
+    height: 480px;
     -moz-box-shadow: 4px 4px 14px #000;
     -webkit-box-shadow: 4px 4px 14px #000;
     box-shadow: 4px 4px 14px #000;
