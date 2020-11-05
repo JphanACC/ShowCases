@@ -5,7 +5,7 @@ const index = async(req, res) => {
     try {
         const foundPost = await db.Post.find({}).populate("User").sort({ "createdAt": -1 })
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
-        const foundcurrentFollowing = await db.User.findById(req.session.currentUser.id).populate("Followings");
+        const foundcurrentFollowers = await db.User.findById(req.session.currentUser.id).populate("Followers");
         const sortedLikes = await db.Post.aggregate([
             // project with an array length
             {
@@ -36,7 +36,7 @@ const index = async(req, res) => {
             trendingPosts: trendingPost,
             eachPost: foundPost,
             currentUser: foundCurrentUser,
-            foundcurrentFollowing: foundcurrentFollowing,
+            currentFollowers: foundcurrentFollowers,
         })
     } catch (error) {
         console.log(error)

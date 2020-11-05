@@ -24,18 +24,18 @@
                 <div class="col-6">
                     <div class="row">
                         <p>
-                            User:
+                            <mark class="text-gradient">User:</mark>
                             <%= foundUser.username %>
-                            <br> First Name:
+                            <br> <mark class="text-gradient">First Name:</mark>
                             <%= foundUser.firstName %>
 
-                            <br> Last Name:
+                            <br> <mark class="text-gradient">Last Name:</mark>
                             <%= foundUser.lastName %>
 
-                            <br> Email Address:
+                            <br> <mark class="text-gradient">Email Address:</mark>
                             <%= foundUser.email %>
 
-                            <br> Joined Date:
+                            <br> <mark class="text-gradient">Joined Date:</mark>
                             <%= foundUser.createdAt.toISOString().split('T')[0] %>
                         </p>
                     </div>

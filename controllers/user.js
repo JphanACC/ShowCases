@@ -5,7 +5,7 @@ const galleryShow = async(req, res) => {
     try {
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundUser = await db.User.findById(req.params.id).populate("Followings");
-        const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
+        const foundcurrentFollowers = await db.User.findById(req.session.currentUser.id).populate("Followers");
         const foundUserPosts = await db.Post.find({
             User: foundUser.id
         }).populate("User").sort({ "createdAt": -1 })
@@ -17,7 +17,7 @@ const galleryShow = async(req, res) => {
             eachPost: filteredPosts,
             currentUser: foundCurrentUser,
             foundUser: foundUser,
-            foundcurrentFollowing: foundcurrentFollowing,
+            currentFollowers: foundcurrentFollowers,
         })
     } catch (error) {
         console.log(error)
@@ -30,7 +30,7 @@ const show = async(req, res) => {
     try {
         const foundCurrentUser = await db.User.findById(req.session.currentUser.id).populate("Followings");
         const foundUser = await db.User.findById(req.params.id).populate("Followings");
-        const foundcurrentFollowing = await db.User.findById(req.params.id).populate("Followings");
+        const foundcurrentFollowers = await db.User.findById(req.session.currentUser.id).populate("Followers");
         const foundUserPosts = await db.Post.find({
             User: foundUser.id
         }).populate("User")
@@ -41,7 +41,7 @@ const show = async(req, res) => {
             eachPost: foundUserPosts,
             currentUser: foundCurrentUser,
             foundUser: foundUser,
-            foundcurrentFollowing: foundcurrentFollowing,
+            currentFollowers: foundcurrentFollowers,
         })
     } catch (error) {
         console.log(error)
