@@ -119,6 +119,14 @@ body .no-padding {
     line-height: 1.1;
 }
 
+.text-gradient {
+    color: red;
+    background: none;
+    background: -webkit-linear-gradient(90deg, #23d4d4, #cb9dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
 /* trending images thumbnail sizes */
 

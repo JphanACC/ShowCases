@@ -38,6 +38,24 @@
                 </div>
             </div>
 
+            <!-- Followers -->
+            <h3 style="padding-top: 15px;">Followers: </h3>
+            <ul class="list-unstyled components">
+            <% currentFollowers.Followers.forEach((follower) => { %>
+                <a href="/user/<%= follower.id%>/profile">
+                    <div class="row gradient-border card-hover" style="margin: 2px 0; padding: 7px;">
+                        <div class="col-3" style="top:5px">
+                            <div class="profile-photo img-scale" style="background-image: url('<%= follower.profileUrl %>'); width: 35px; height: 35px;"></div>
+                        </div>
+                        <div class="col-9">
+                            <h3>
+                                <%= follower.firstName %>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            <% }) %>
+        </ul>
     </nav>
 
     </div>
